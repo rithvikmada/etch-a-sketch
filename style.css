@@ -1,0 +1,22 @@
+#container {
+    width: 500px;
+    height: 500px;
+    border: 10px solid black;
+    padding: 5px;
+
+    /* Flexbox properties */
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 1px;
+}
+
+.square {
+    background-color: grey;
+
+    /* Flexbox properties */
+
+    flex-shrink: 0;
+}
