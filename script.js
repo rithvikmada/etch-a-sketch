@@ -1,21 +1,41 @@
 const container = document.querySelector("#container");
-let input = Number(prompt("How many rows? (Under 20)"));
+let numberOfSquares = 40;
+generateSquares();
+addMouseBehavior();
 
-for (let i = 1; i <= (input * input); i++) {        // Generate # of squares 
-    const squares = document.createElement("div");
-    
-    let dim = (500 - input)/input;      // Determine size of each square
-    squares.setAttribute("style", `width: ${dim}px; height: ${dim}px`);
-    
-    
-    squares.classList.add("square");  
-    container.appendChild(squares);
+function generateSquares() {        // Generate canvas
+    for (let i = 1; i <= (numberOfSquares * numberOfSquares); i++) {        
+        const squares = document.createElement("div");
+        
+        let dim = (500 - numberOfSquares)/numberOfSquares;      
+        squares.setAttribute("style", `width: ${dim}px; height: ${dim}px`);
+        
+        squares.classList.add("square");  
+        container.appendChild(squares);
+    }
 }
 
-const squares = document.querySelectorAll(".square")
+function addMouseBehavior() {       // Add mouseenter behavior
+    const squares = document.querySelectorAll(".square");
 
-squares.forEach((square) => {       // Add mouseenter behavior
-    square.addEventListener("mouseenter", () => {
-        square.style.backgroundColor = "blue"
+    squares.forEach((square) => {       
+        square.addEventListener("mouseenter", () => {
+            square.style.backgroundColor = "blue"
+        });
     });
-});
+}
+
+function takeInput() {      // Clear canvas & grab user input
+    container.innerHTML = "";
+    numberOfSquares = input.value; 
+    generateSquares();
+    addMouseBehavior();
+}
+
+const submit = document.querySelector("#generate");
+const input = document.querySelector("#input");
+
+submit.onclick = () => takeInput();    // Click submit...
+input.onkeydown = (event) => {      // .. or "Enter" to input 
+    if (event.key === "Enter") submit.click();
+}
