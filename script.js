@@ -1,5 +1,6 @@
 const container = document.querySelector("#container");
 let numberOfSquares = 40;
+
 generateSquares();
 addMouseBehavior();
 
@@ -20,10 +21,10 @@ function addMouseBehavior() {       // Add mouseenter behavior
 
     squares.forEach((square) => {       
         square.addEventListener("mouseenter", () => {
-            square.style.backgroundColor = "blue"
-        });
+            square.style.backgroundColor = "blue";
+        })
     });
-}
+};
 
 function takeInput() {      // Clear canvas & grab user input
     container.innerHTML = "";
@@ -39,3 +40,19 @@ submit.onclick = () => takeInput();    // Click submit...
 input.onkeydown = (event) => {      // .. or "Enter" to input 
     if (event.key === "Enter") submit.click();
 }
+
+const rainbow = document.querySelector("#rainbow");
+
+rainbow.onchange = () => {
+    
+    if (rainbow.checked) {
+        const squares = document.querySelectorAll(".square");
+
+        squares.forEach((square) => {
+            square.addEventListener("mouseenter", () => {
+                    square.style.backgroundColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+            });
+        });
+    }
+    else addMouseBehavior();
+};
