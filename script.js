@@ -1,5 +1,5 @@
 const container = document.querySelector("#container");
-let numberOfSquares = 40;
+let numberOfSquares = 30;
 let color = "black";
 
 generateSquares();
@@ -40,23 +40,18 @@ function takeInput() {      // Clear canvas & grab user input
     numberOfSquares = input.value; 
     generateSquares();
     rainbow.checked = false;
+    shader.checked = false;
     addMouseBehavior(color);
 }
 
-const submit = document.querySelector("#generate");
-const input = document.querySelector("#input");
-
-submit.onclick = () => takeInput();    // Click submit...
-input.onkeydown = (event) => {      // .. or "Enter" to input 
-    if (event.key === "Enter") submit.click();
+function changeColor() {      // Clear canvas & grab user input
+    rainbow.checked = false;
+    color = colorInput.value; 
+    addMouseBehavior(color);
 }
 
-const rainbow = document.querySelector("#rainbow");
-
-rainbow.onchange = () => {
-    
-    if (rainbow.checked) {
-        const squares = document.querySelectorAll(".square");
+function randomMouseBehavior() {
+    const squares = document.querySelectorAll(".square");
 
         squares.forEach((square) => {
             let squareColor = square.style.backgroundColor;
@@ -69,8 +64,51 @@ rainbow.onchange = () => {
                 }
             });
         });
-    }
-    else {
-        addMouseBehavior(color);
-    }
+}
+
+function addShadingBehavior(level) {
+    const squares = document.querySelectorAll(".square");
+
+        squares.forEach((square) => {
+            let squareOpacity = Number(square.style.opacity);
+
+            square.addEventListener("mouseenter", () => {
+                console.log(squareOpacity);
+                squareOpacity += level;
+                console.log(squareOpacity);
+                square.style.opacity = squareOpacity;
+                console.log(squareOpacity);
+            }, true);
+        });
+
+}
+
+const submitButton = document.querySelector("#generate");
+const input = document.querySelector("#input");
+
+submitButton.onclick = () => takeInput();    // Click submit...
+input.onkeydown = (event) => {      // .. or "Enter" to input 
+    if (event.key === "Enter") submitButton.click();
+}
+
+const colorInput = document.querySelector("#color");
+const changeButton = document.querySelector("#change");
+
+changeButton.onclick = () => changeColor();    // Click submit...
+colorInput.onkeydown = (event) => {      // .. or "Enter" to input 
+    if (event.key === "Enter") changeButton.click();
+}
+
+const rainbow = document.querySelector("#rainbow");
+
+rainbow.onchange = () => {
+    if (rainbow.checked) randomMouseBehavior();
+    else addMouseBehavior(color);
+};
+
+const shader = document.querySelector("#shader");
+
+shader.onchange = () => {
+    if (shader.checked) addShadingBehavior(0.2);
+    else addShadingBehavior(1);
 };
