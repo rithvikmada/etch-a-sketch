@@ -19,3 +19,113 @@
 
     flex-shrink: 0;
 }
+
+/* Page design */
+
+@font-face {
+    font-family: "Arcade";
+    src: url(fonts/ARCADE.TTF);
+}
+
+body {
+    display: flex; 
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0px;
+
+    background-color: rgb(212, 213, 213);
+}
+
+/* Title & Animation */
+
+h1 {
+    flex-grow: 0;
+    text-align: center;
+    font-family: "Arcade";
+    font-size: 100px;
+    text-shadow: 20px 20px 50px black;
+}
+
+h1:hover,
+p:hover {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, violet);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-gradient 4s linear
+        infinite;
+}
+
+@keyframes animate-gradient {
+    to {
+        background-position: 200%;
+    }
+}
+
+#content {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px;
+
+    font-family: "Arcade";
+    font-size: x-large;
+    font-weight: 1000;
+    padding: 0px 100px;
+}
+
+/* Options */
+
+#options > * {
+    margin: 25px;
+}
+
+label {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    min-width: 220px;
+}
+
+input {
+    text-align: center;
+    width: 80px;
+    font-family: "Arcade";
+    font-size: large;
+}
+
+button {
+    font-family: "Arcade";
+    font-size: large;
+}
+
+#rainbow, #shader {
+    margin: 0px;
+    width: 13px;
+}
+
+.align {
+    display: flex;
+    align-items: center;
+}
+
+/* Canvas & Footer */
+
+#container {
+    flex-shrink: 0;
+    box-shadow: 10px 10px 500px grey;
+}
+
+#footer {
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    background-color: darkgrey;
+    font-family: "Arcade";
+}

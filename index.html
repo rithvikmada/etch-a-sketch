@@ -9,27 +9,43 @@
 </head>
 
 <body>
-    <div id="container"></div>
+    <h1>Etch-A-Sketch</h1>
+    
+    <div id="content">
 
-    <div>
-        <label>Number of rows (Up to 64):</label>
-        <input id="input" value=30>
-        <button id="generate">Generate</button>
+        <div id="options">
+            <div>
+                <label>Number of rows (Up to 64):</label>
+                <span>
+                    <input id="input" value=30>
+                    <button id="generate">Generate</button>
+                </span>
+            </div>
+
+            <div>
+                <label>Choose a Color:</label>
+                <div>
+                    <input id="color" value="black">
+                    <button id="change">Change</button>
+                </div>
+            </div>
+        
+            <div>
+                <div class="align">
+                    <label>Rainbow Mode:</label>
+                    <input type="checkbox" id="rainbow">
+                </div>
+                <div class="align">
+                    <label>Shading Mode:</label>
+                    <input type="checkbox" id="shader">
+                </div>
+            </div>
+        </div>
+        <div id="container"></div>
     </div>
-
-    <div>
-        <label>Choose a Color:</label>
-        <input id="color" value="black">
-        <button id="change">Change</button>
+    
+    <div id="footer">
+        <p>Made by Rithvik Mada.</footer></p>
     </div>
-   
-    <span>
-        <label>Rainbow Mode:</label>
-        <input type="checkbox" id="rainbow">
-   
-        <label>Shading Mode:</label>
-        <input type="checkbox" id="shader">
-    </span>
-
 </body>
 </html>

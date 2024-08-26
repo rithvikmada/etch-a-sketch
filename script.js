@@ -4,6 +4,7 @@ let color = "black";
 
 generateSquares();
 addMouseBehavior(color);
+addShadingBehavior(1);
 
 function generateSquares() {        // Generate canvas
     for (let i = 1; i <= (numberOfSquares * numberOfSquares); i++) {        
@@ -41,6 +42,9 @@ function takeInput() {      // Clear canvas & grab user input
     generateSquares();
     rainbow.checked = false;
     shader.checked = false;
+
+    colorInput.value = "black"
+    color = "black"
     addMouseBehavior(color);
 }
 
@@ -72,13 +76,15 @@ function addShadingBehavior(level) {
         squares.forEach((square) => {
             let squareOpacity = Number(square.style.opacity);
 
-            square.addEventListener("mouseenter", () => {
-                console.log(squareOpacity);
-                squareOpacity += level;
-                console.log(squareOpacity);
-                square.style.opacity = squareOpacity;
-                console.log(squareOpacity);
-            }, true);
+            if (squareOpacity < 1) {
+                square.addEventListener("mouseenter", () => {
+                    console.log(squareOpacity);
+                    squareOpacity += level;
+                    console.log(squareOpacity);
+                    square.style.opacity = squareOpacity;
+                    console.log(squareOpacity);
+                }, true);
+            }
         });
 
 }
